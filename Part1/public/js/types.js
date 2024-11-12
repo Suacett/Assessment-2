@@ -19,39 +19,62 @@ export var FitnessProgram;
 export class ClientManager {
     constructor() {
         this.clients = [];
+        // Initialize with test data
+        this.clients = [
+            {
+                clientID: "PT001",
+                name: "John Smith",
+                dateOfBirth: "1990-05-15",
+                gender: Gender.Male,
+                fitnessProgram: FitnessProgram.MuscleGain,
+                contactInfo: "john.smith@email.com",
+                joinedDate: "2024-01-01",
+                endingDate: "2024-12-31",
+                specialHealthNotes: "Previous shoulder injury",
+                isVIP: true,
+            },
+            {
+                clientID: "PT002",
+                name: "Sarah Johnson",
+                dateOfBirth: "1988-08-22",
+                gender: Gender.Female,
+                fitnessProgram: FitnessProgram.FatLoss,
+                contactInfo: "sarah.j@email.com",
+                joinedDate: "2024-02-01",
+                endingDate: "2024-08-01",
+                specialHealthNotes: "",
+                isVIP: false,
+            },
+        ];
     }
-    // Add a client if ID doesn't exist
     addClient(client) {
-        if (this.clients.some(c => c.clientID === client.clientID)) {
+        if (this.clients.some((c) => c.clientID === client.clientID)) {
             return false;
         }
         this.clients.push(client);
         return true;
     }
-    // Get client by ID
     getClient(id) {
-        return this.clients.find(client => client.clientID === id);
+        return this.clients.find((client) => client.clientID === id);
     }
-    // Get all clients
     getAllClients() {
         return [...this.clients];
     }
-    // Get only VIP clients
     getVIPClients() {
-        return this.clients.filter(client => client.isVIP);
+        return this.clients.filter((client) => client.isVIP);
     }
-    // Delete a client by ID
     deleteClient(id) {
         const initialLength = this.clients.length;
-        this.clients = this.clients.filter(client => client.clientID !== id);
+        this.clients = this.clients.filter((client) => client.clientID !== id);
         return this.clients.length !== initialLength;
     }
-    // Update existing client
-    updateClient(id, updatedClient) {
-        const index = this.clients.findIndex(client => client.clientID === id);
-        if (index === -1)
-            return false;
-        this.clients[index] = updatedClient;
-        return true;
+    // Fixed updateClient method
+    updateClient(updatedClient) {
+        const index = this.clients.findIndex((client) => client.clientID === updatedClient.clientID);
+        if (index !== -1) {
+            this.clients[index] = updatedClient;
+            return true;
+        }
+        return false;
     }
 }
