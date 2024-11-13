@@ -42,7 +42,7 @@ export class ClientManager {
         dateOfBirth: "1990-05-15",
         gender: Gender.Male,
         fitnessProgram: FitnessProgram.MuscleGain,
-        contactInfo: "john.smith@email.com",
+        contactInfo: "johnny.smitt@email.com",
         joinedDate: "2024-01-01",
         endingDate: "2024-12-31",
         specialHealthNotes: "Previous shoulder injury1",
@@ -50,7 +50,7 @@ export class ClientManager {
       },
       {
         clientID: "PT002",
-        name: "Sarah Johnson",
+        name: "Stinky McSteve McJohnson",
         dateOfBirth: "1988-08-22",
         gender: Gender.Female,
         fitnessProgram: FitnessProgram.FatLoss,
