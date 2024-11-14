@@ -1,6 +1,4 @@
-import { ClientManager, Gender, FitnessProgram } from "./types.js";
-//cannot edit data
-//the test data is not added automatically
+import { ClientManager } from "./types.js";
 class ClientApp {
     constructor() {
         this.messageTimeout = null;
@@ -8,39 +6,9 @@ class ClientApp {
         this.editingClientID = null;
         this.clients = [];
         this.clientManager = new ClientManager();
-        this.addTestData(); // Add test data on initialization
         this.initializeEventListeners();
         // Display initial data
         this.displayClients(this.clientManager.getAllClients());
-    }
-    addTestData() {
-        const testClients = [
-            {
-                clientID: "PT001",
-                name: "John Smith",
-                dateOfBirth: "1990-05-15",
-                gender: Gender.Male,
-                fitnessProgram: FitnessProgram.MuscleGain,
-                contactInfo: "john.smith@email.com",
-                joinedDate: "2024-01-01",
-                endingDate: "2024-12-31",
-                specialHealthNotes: "Previous shoulder injury",
-                isVIP: true,
-            },
-            {
-                clientID: "PT002",
-                name: "Sarah Johnson",
-                dateOfBirth: "1988-08-22",
-                gender: Gender.Female,
-                fitnessProgram: FitnessProgram.FatLoss,
-                contactInfo: "sarah.j@email.com",
-                joinedDate: "2024-02-01",
-                endingDate: "2024-08-01",
-                specialHealthNotes: "",
-                isVIP: false,
-            },
-        ];
-        this.clients = testClients; // Store test clients
     }
     initializeEventListeners() {
         var _a, _b;

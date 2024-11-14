@@ -38,11 +38,11 @@ export class ClientManager {
     this.clients = [
       {
         clientID: "PT001",
-        name: "John Smith",
+        name: "Jern DINGWIDDLE",
         dateOfBirth: "1990-05-15",
         gender: Gender.Male,
         fitnessProgram: FitnessProgram.MuscleGain,
-        contactInfo: "johnny.smitt@email.com",
+        contactInfo: "Jernny.DINGWIDDLE@email.com",
         joinedDate: "2024-01-01",
         endingDate: "2024-12-31",
         specialHealthNotes: "Previous shoulder injury1",
@@ -50,11 +50,11 @@ export class ClientManager {
       },
       {
         clientID: "PT002",
-        name: "Stinky McSteve McJohnson",
+        name: "Stinky McSteve McShikonokonokokoshtantan",
         dateOfBirth: "1988-08-22",
         gender: Gender.Female,
         fitnessProgram: FitnessProgram.FatLoss,
-        contactInfo: "sarah.j@email.com",
+        contactInfo: "Steve.MSNNNNKTT@email.com",
         joinedDate: "2024-02-01",
         endingDate: "2024-08-01",
         specialHealthNotes: "22",

@@ -1,7 +1,6 @@
 import { Client, ClientManager, Gender, FitnessProgram } from "./types.js";
 
-//cannot edit data
-//the test data is not added automatically
+
 class ClientApp {
   private clientManager: ClientManager;
   private messageTimeout: number | null = null;
@@ -11,42 +10,12 @@ class ClientApp {
 
   constructor() {
     this.clientManager = new ClientManager();
-    this.addTestData(); // Add test data on initialization
     this.initializeEventListeners();
     // Display initial data
     this.displayClients(this.clientManager.getAllClients());
   }
 
-  private addTestData(): void {
-    const testClients: Client[] = [
-      {
-        clientID: "PT001",
-        name: "John Smith",
-        dateOfBirth: "1990-05-15",
-        gender: Gender.Male,
-        fitnessProgram: FitnessProgram.MuscleGain,
-        contactInfo: "john.smith@email.com",
-        joinedDate: "2024-01-01",
-        endingDate: "2024-12-31",
-        specialHealthNotes: "Previous shoulder injury44",
-        isVIP: true,
-      },
-      {
-        clientID: "PT002",
-        name: "Sarah Johnson",
-        dateOfBirth: "1988-08-22",
-        gender: Gender.Female,
-        fitnessProgram: FitnessProgram.FatLoss,
-        contactInfo: "sarah.j@email.com",
-        joinedDate: "2024-02-01",
-        endingDate: "2024-08-01",
-        specialHealthNotes: "55",
-        isVIP: false,
-      },
-    ];
 
-    this.clients = testClients; // Store test clients
-  }
 
   private initializeEventListeners(): void {
     // Add client form submission

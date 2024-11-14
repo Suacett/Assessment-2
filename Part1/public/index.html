@@ -1,111 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Personal Trainer Client Management</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>Personal Trainer Client Management</h1>
-            <div id="message" class="message-container"></div>
-        </header>
-        <div style="color: red;">If this text is red, CSS isn't loading</div>
-        <div class="test-css">If this text is blue, CSS is loading</div>
-    
-        <main class="content-grid">
-            <section class="form-section">
-                <h2>Add/Edit Client</h2>
-                <form id="addClientForm">
-                    <div class="form-group">
-                        <label for="clientID">Client ID*</label>
-                        <input type="text" id="clientID" name="clientID" required>
-                    </div>
+      <header>
+        <h1>Personal Trainer Client Management</h1>
+        <div id="message" class="message-container"></div>
+      </header>
+      <div style="color: red">If this text is red, CSS isn't loading</div>
+      <div class="test-css">If this text is blue, CSS is loading</div>
 
-                    <div class="form-group">
-                        <label for="name">Name*</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
+      <main class="content-grid">
+        <section class="form-section">
+          <h2>Add/Edit Client</h2>
+          <form id="addClientForm">
+            <div class="form-group">
+              <label for="clientID">Client ID*</label>
+              <input type="text" id="clientID" name="clientID" required />
+            </div>
 
-                    <div class="form-group">
-                        <label for="dateOfBirth">Date of Birth*</label>
-                        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
-                    </div>
+            <div class="form-group">
+              <label for="name">Name*</label>
+              <input type="text" id="name" name="name" required />
+            </div>
 
-                    <div class="form-group">
-                        <label for="gender">Gender*</label>
-                        <select id="gender" name="gender" required>
-                            <option value="Female">Female</option>
-                            <option value="Male">Male</option>
-                            <option value="Unspecified">Unspecified</option>
-                        </select>
-                    </div>
+            <div class="form-group">
+              <label for="dateOfBirth">Date of Birth*</label>
+              <input type="date" id="dateOfBirth" name="dateOfBirth" required />
+            </div>
 
-                    <div class="form-group">
-                        <label for="fitnessProgram">Fitness Program*</label>
-                        <select id="fitnessProgram" name="fitnessProgram" required>
-                            <option value="fat loss">Fat Loss</option>
-                            <option value="senior fitness">Senior Fitness</option>
-                            <option value="muscle gain">Muscle Gain</option>
-                            <option value="pre/postnatal fitness">Pre/Postnatal Fitness</option>
-                            <option value="contest preparation">Contest Preparation</option>
-                            <option value="overall fitness">Overall Fitness</option>
-                        </select>
-                    </div>
+            <div class="form-group">
+              <label for="gender">Gender*</label>
+              <select id="gender" name="gender" required>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Unspecified">Unspecified</option>
+              </select>
+            </div>
 
-                    <div class="form-group">
-                        <label for="contactInfo">Contact Info*</label>
-                        <input type="text" id="contactInfo" name="contactInfo" required>
-                    </div>
+            <div class="form-group">
+              <label for="fitnessProgram">Fitness Program*</label>
+              <select id="fitnessProgram" name="fitnessProgram" required>
+                <option value="fat loss">Fat Loss</option>
+                <option value="senior fitness">Senior Fitness</option>
+                <option value="muscle gain">Muscle Gain</option>
+                <option value="pre/postnatal fitness">
+                  Pre/Postnatal Fitness
+                </option>
+                <option value="contest preparation">Contest Preparation</option>
+                <option value="overall fitness">Overall Fitness</option>
+              </select>
+            </div>
 
-                    <div class="form-group">
-                        <label for="joinedDate">Joined Date*</label>
-                        <input type="date" id="joinedDate" name="joinedDate" required>
-                    </div>
+            <div class="form-group">
+              <label for="contactInfo">Contact Info*</label>
+              <input type="text" id="contactInfo" name="contactInfo" required />
+            </div>
 
-                    <div class="form-group">
-                        <label for="endingDate">Ending Date*</label>
-                        <input type="date" id="endingDate" name="endingDate" required>
-                    </div>
+            <div class="form-group">
+              <label for="joinedDate">Joined Date*</label>
+              <input type="date" id="joinedDate" name="joinedDate" required />
+            </div>
 
-                    <div class="form-group">
-                        <label for="specialHealthNotes">Special Health Notes</label>
-                        <textarea id="specialHealthNotes" name="specialHealthNotes"></textarea>
-                    </div>
+            <div class="form-group">
+              <label for="endingDate">Ending Date*</label>
+              <input type="date" id="endingDate" name="endingDate" required />
+            </div>
 
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="isVIP" name="isVIP">
-                            VIP Client
-                        </label>
-                    </div>
+            <div class="form-group">
+              <label for="specialHealthNotes">Special Health Notes</label>
+              <textarea
+                id="specialHealthNotes"
+                name="specialHealthNotes"
+              ></textarea>
+            </div>
 
-                    <button type="submit" class="btn-primary">Save Client</button>
-                </form>
-            </section>
+            <div class="form-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="isVIP" name="isVIP" />
+                VIP Client
+              </label>
+            </div>
 
-            <section class="search-section">
-                <h2>Search Client</h2>
-                <form id="searchForm">
-                    <div class="form-group">
-                        <label for="searchId">Client ID</label>
-                        <input type="text" id="searchId" name="searchId" required>
-                    </div>
-                    <button type="submit" class="btn-secondary">Search</button>
-                </form>
+            <button type="submit" class="btn-primary">Save Client</button>
+          </form>
+        </section>
 
-                <div class="button-group">
-                    <button id="showAllBtn" class="btn-secondary">Show All Clients</button>
-                    <button id="showVIPBtn" class="btn-secondary">Show VIP Clients</button>
-                </div>
+        <section class="search-section">
+          <h2>Search Client</h2>
+          <form id="searchForm">
+            <div class="form-group">
+              <label for="searchId">Client ID</label>
+              <input type="text" id="searchId" name="searchId" required />
+            </div>
+            <button type="submit" class="btn-secondary">Search</button>
+          </form>
 
-                <div id="clientList" class="client-list"></div>
-            </section>
-        </main>
+          <div class="button-group">
+            <button id="showAllBtn" class="btn-secondary">
+              Show All Clients
+            </button>
+            <button id="showVIPBtn" class="btn-secondary">
+              Show VIP Clients
+            </button>
+          </div>
+
+          <div id="clientList" class="client-list"></div>
+        </section>
+      </main>
     </div>
 
     <script type="module" src="js/app.js"></script>
-</body>
+  </body>
 </html>
