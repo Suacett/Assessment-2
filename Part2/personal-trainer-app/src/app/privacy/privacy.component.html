@@ -1,1 +1,50 @@
-<p>privacy works!</p>
+<div class="privacy-container">
+  <section class="privacy-header">
+    <h2>Privacy & Security Information</h2>
+    <p>Our commitment to protecting your clients' data</p>
+  </section>
+
+  <section class="privacy-content">
+    <div class="privacy-section">
+      <h3>Data Protection Measures</h3>
+      <ul>
+        <li *ngFor="let measure of securityMeasures" class="security-measure">
+          <h4>{{ measure.title }}</h4>
+          <p>{{ measure.details }}</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h3>Technical Security Features</h3>
+      <ul>
+        <li>Form validation to prevent invalid data entry</li>
+        <li>Secure session management</li>
+        <li>Protection against unauthorized access</li>
+        <li>Regular security updates and maintenance</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h3>Client Data Handling</h3>
+      <p>We follow these principles when handling client data:</p>
+      <ul>
+        <li>Only collecting necessary information</li>
+        <li>Secure storage of personal data</li>
+        <li>Limited access to client information</li>
+        <li>Regular review of security measures</li>
+      </ul>
+    </div>
+
+    <div class="privacy-section">
+      <h3>Your Responsibilities</h3>
+      <p>To maintain security, please:</p>
+      <ul>
+        <li>Keep your login credentials secure</li>
+        <li>Log out after each session</li>
+        <li>Report any suspicious activity</li>
+        <li>Regularly update your password</li>
+      </ul>
+    </div>
+  </section>
+</div>

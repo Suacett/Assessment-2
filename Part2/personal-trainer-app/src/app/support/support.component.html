@@ -1,1 +1,62 @@
-<p>support works!</p>
+<div class="help-container">
+  <section class="help-header">
+    <h2>Help & Support</h2>
+    <p>Find answers to common questions and learn how to use the application</p>
+  </section>
+
+  <div class="help-content">
+    <!-- Quick Start Guide -->
+    <section class="help-section">
+      <h3>Quick Start Guide</h3>
+      <div class="quick-guide">
+        <div *ngFor="let section of helpSections" class="guide-section">
+          <h4>{{ section.title }}</h4>
+          <ul>
+            <li *ngFor="let item of section.items">{{ item }}</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="help-section">
+      <h3>Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div *ngFor="let faq of faqItems" class="faq-item">
+          <div class="question">
+            <h4>{{ faq.question }}</h4>
+          </div>
+          <div class="answer">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Support -->
+    <section class="help-section">
+      <h3>Need More Help?</h3>
+      <div class="contact-support">
+        <p>If you need additional assistance, please contact support:</p>
+        <ul>
+          <li>Email: supportexample.com</li>
+          <li>Phone: (555) 123-4567</li>
+          <li>Hours: Monday - Friday, 9:00 AM - 5:00 PM</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Usage Tips -->
+    <section class="help-section">
+      <h3>Usage Tips</h3>
+      <div class="tips-list">
+        <ul>
+          <li>Keep client information up to date</li>
+          <li>Use the search function to quickly find clients</li>
+          <li>Review client details regularly</li>
+          <li>Add detailed health notes when necessary</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>

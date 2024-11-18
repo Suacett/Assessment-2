@@ -1,1 +1,67 @@
-<p>client-list works!</p>
+<div class="list-container">
+  <h2>Client List</h2>
+
+  <!-- Message Display -->
+  <div *ngIf="message" class="message" [ngClass]="messageType">
+    {{ message }}
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-section">
+    <div class="search-form">
+      <input
+        type="text"
+        [(ngModel)]="searchId"
+        placeholder="Enter Client ID"
+        class="search-input"
+      />
+      <button (click)="searchClient()" class="btn-primary">Search</button>
+    </div>
+
+    <div class="filter-buttons">
+      <button (click)="loadAllClients()" class="btn-secondary">
+        Show All Clients
+      </button>
+      <button (click)="showVIPClients()" class="btn-secondary">
+        Show VIP Clients
+      </button>
+      <button routerLink="/clients/new" class="btn-primary">
+        Add New Client
+      </button>
+    </div>
+  </div>
+
+  <!-- Client Cards -->
+  <div class="client-grid">
+    <div *ngIf="clients.length === 0" class="no-clients">
+      No clients to display
+    </div>
+
+    <div
+      *ngFor="let client of clients"
+      class="client-card"
+      [class.vip]="client.isVIP"
+    >
+      <div class="card-header">
+        <h3>{{ client.name }}</h3>
+        <span *ngIf="client.isVIP" class="vip-badge">VIP</span>
+      </div>
+
+      <div class="card-content">
+        <p><strong>ID:</strong> {{ client.clientID }}</p>
+        <p><strong>Program:</strong> {{ client.fitnessProgram }}</p>
+        <p><strong>Joined:</strong> {{ client.joinedDate | date }}</p>
+        <p><strong>Ending:</strong> {{ client.endingDate | date }}</p>
+      </div>
+
+      <div class="card-actions">
+        <button (click)="editClient(client.clientID)" class="btn-secondary">
+          Edit
+        </button>
+        <button (click)="deleteClient(client.clientID)" class="btn-secondary">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

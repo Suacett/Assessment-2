@@ -1,1 +1,156 @@
-<p>client-form works!</p>
+<div class="form-container">
+  <h2>{{ isEditing ? "Edit" : "Add" }} Client</h2>
+
+  <div *ngIf="message" class="message" [ngClass]="messageType">
+    {{ message }}
+  </div>
+
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" class="client-form">
+    <div class="form-group">
+      <label for="clientID">Client ID*</label>
+      <input
+        id="clientID"
+        type="text"
+        formControlName="clientID"
+        [readonly]="isEditing"
+      />
+      <div
+        *ngIf="
+          clientForm.get('clientID')?.touched &&
+          clientForm.get('clientID')?.invalid
+        "
+        class="error-message"
+      >
+        Client ID is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Name*</label>
+      <input id="name" type="text" formControlName="name" />
+      <div
+        *ngIf="
+          clientForm.get('name')?.touched && clientForm.get('name')?.invalid
+        "
+        class="error-message"
+      >
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfBirth">Date of Birth*</label>
+      <input id="dateOfBirth" type="date" formControlName="dateOfBirth" />
+      <div
+        *ngIf="
+          clientForm.get('dateOfBirth')?.touched &&
+          clientForm.get('dateOfBirth')?.invalid
+        "
+        class="error-message"
+      >
+        Date of Birth is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender*</label>
+      <select id="gender" formControlName="gender">
+        <option value="">Select Gender</option>
+        <option *ngFor="let gender of genders" [value]="gender">
+          {{ gender }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          clientForm.get('gender')?.touched && clientForm.get('gender')?.invalid
+        "
+        class="error-message"
+      >
+        Gender is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="fitnessProgram">Fitness Program*</label>
+      <select id="fitnessProgram" formControlName="fitnessProgram">
+        <option value="">Select Program</option>
+        <option *ngFor="let program of fitnessPrograms" [value]="program">
+          {{ program }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          clientForm.get('fitnessProgram')?.touched &&
+          clientForm.get('fitnessProgram')?.invalid
+        "
+        class="error-message"
+      >
+        Fitness Program is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="contactInfo">Contact Info*</label>
+      <input id="contactInfo" type="text" formControlName="contactInfo" />
+      <div
+        *ngIf="
+          clientForm.get('contactInfo')?.touched &&
+          clientForm.get('contactInfo')?.invalid
+        "
+        class="error-message"
+      >
+        Contact Info is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="joinedDate">Joined Date*</label>
+      <input id="joinedDate" type="date" formControlName="joinedDate" />
+      <div
+        *ngIf="
+          clientForm.get('joinedDate')?.touched &&
+          clientForm.get('joinedDate')?.invalid
+        "
+        class="error-message"
+      >
+        Joined Date is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="endingDate">Ending Date*</label>
+      <input id="endingDate" type="date" formControlName="endingDate" />
+      <div
+        *ngIf="
+          clientForm.get('endingDate')?.touched &&
+          clientForm.get('endingDate')?.invalid
+        "
+        class="error-message"
+      >
+        Ending Date is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="specialHealthNotes">Special Health Notes</label>
+      <textarea id="specialHealthNotes" formControlName="specialHealthNotes">
+      </textarea>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <label class="checkbox-label">
+        <input type="checkbox" formControlName="isVIP" />
+        VIP Client
+      </label>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="btn-primary">
+        {{ isEditing ? "Update" : "Save" }} Client
+      </button>
+      <button type="button" class="btn-secondary" routerLink="/clients">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

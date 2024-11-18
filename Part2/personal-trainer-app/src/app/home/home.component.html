@@ -1,1 +1,48 @@
-<p>home works!</p>
+<div class="home-container">
+  <section class="welcome-section">
+    <h2>Welcome to Personal Trainer Client Management</h2>
+    <p>Manage your clients efficiently with our easy-to-use platform.</p>
+  </section>
+
+  <section class="features-grid">
+    <div class="feature-card">
+      <h3>Client Management</h3>
+      <p>Add and manage client profiles with essential information</p>
+      <button class="btn-primary" routerLink="/clients/new">
+        Add New Client
+      </button>
+    </div>
+
+    <div class="feature-card">
+      <h3>View Clients</h3>
+      <p>Access your client list and view VIP members</p>
+      <button class="btn-primary" routerLink="/clients">View Clients</button>
+    </div>
+
+    <div class="feature-card">
+      <h3>Privacy & Security</h3>
+      <p>Learn about our privacy and security measures</p>
+      <button class="btn-primary" routerLink="/privacy">Privacy Info</button>
+    </div>
+
+    <div class="feature-card">
+      <h3>Help & Support</h3>
+      <p>Get assistance with using the application</p>
+      <button class="btn-primary" routerLink="/help">Get Help</button>
+    </div>
+  </section>
+
+  <section class="quick-stats" *ngIf="stats">
+    <h3>Quick Statistics</h3>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <p class="stat-number">{{ stats.totalClients }}</p>
+        <p class="stat-label">Total Clients</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-number">{{ stats.vipClients }}</p>
+        <p class="stat-label">VIP Clients</p>
+      </div>
+    </div>
+  </section>
+</div>
