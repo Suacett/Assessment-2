@@ -1,22 +1,30 @@
-// Enum for Gender options
+/**
+* types.ts
+* Defines data types, interfaces, and manages client data for the personal trainer application
+*/
+
+// Define available gender options
 export enum Gender {
   Female = "Female",
-  Male = "Male",
-  Unspecified = "Unspecified",
-}
-
-// Enum for Fitness Program options
-export enum FitnessProgram {
+  Male = "Male", 
+  Unspecified = "Unspecified"
+ }
+ 
+ // Define available fitness program options
+ export enum FitnessProgram {
   FatLoss = "fat loss",
-  SeniorFitness = "senior fitness",
+  SeniorFitness = "senior fitness", 
   MuscleGain = "muscle gain",
   PrePostnatal = "pre/postnatal fitness",
   ContestPrep = "contest preparation",
-  Overall = "overall fitness",
-}
-
-// Client interface definition
-export interface Client {
+  Overall = "overall fitness"
+ }
+ 
+ /**
+ * Interface defining the structure of a client object
+ * Contains personal and training information
+ */
+ export interface Client {
   clientID: string;
   name: string;
   dateOfBirth: string;
@@ -25,16 +33,19 @@ export interface Client {
   contactInfo: string;
   joinedDate: string;
   endingDate: string;
-  specialHealthNotes?: string;
+  specialHealthNotes?: string;  // Optional field
   isVIP: boolean;
-}
-
-// Client Manager Class
-export class ClientManager {
+ }
+ 
+ /**
+ * Manages client data and operations like adding, updating, and deleting clients
+ */
+ export class ClientManager {
+  // Array to store client objects
   private clients: Client[] = [];
-
+ 
   constructor() {
-    // Initialize with test data
+    // Initialize with sample client data
     this.clients = [
       {
         clientID: "PT001",
@@ -62,35 +73,64 @@ export class ClientManager {
       },
     ];
   }
-
+ 
+  /**
+   * Adds a new client if the ID doesn't already exist
+   * @param client Client object to add
+   * @returns true if added successfully, false if ID exists
+   */
   addClient(client: Client): boolean {
+    // Check if client ID already exists
     if (this.clients.some((c) => c.clientID === client.clientID)) {
       return false;
     }
     this.clients.push(client);
     return true;
   }
-
+ 
+  /**
+   * Finds and returns a client by their ID
+   * @param id Client ID to search for
+   * @returns Client object if found, undefined if not
+   */
   getClient(id: string): Client | undefined {
     return this.clients.find((client) => client.clientID === id);
   }
-
+ 
+  /**
+   * Returns array of all clients
+   * @returns Copy of clients array
+   */
   getAllClients(): Client[] {
-    return [...this.clients];
+    return [...this.clients];  // Return copy to prevent direct modification
   }
-
+ 
+  /**
+   * Returns array of VIP clients only
+   * @returns Array of clients with VIP status
+   */
   getVIPClients(): Client[] {
     return this.clients.filter((client) => client.isVIP);
   }
-
+ 
+  /**
+   * Deletes a client by their ID
+   * @param id ID of client to delete
+   * @returns true if client was deleted, false if not found
+   */
   deleteClient(id: string): boolean {
     const initialLength = this.clients.length;
     this.clients = this.clients.filter((client) => client.clientID !== id);
     return this.clients.length !== initialLength;
   }
-
-  // Fixed updateClient method
+ 
+  /**
+   * Updates an existing client's information
+   * @param updatedClient Client object with new information
+   * @returns true if client was updated, false if not found
+   */
   updateClient(updatedClient: Client): boolean {
+    // Find client index by ID
     const index = this.clients.findIndex(
       (client) => client.clientID === updatedClient.clientID
     );
@@ -100,4 +140,4 @@ export class ClientManager {
     }
     return false;
   }
-}
+ }

@@ -1,3 +1,6 @@
+/**
+ * Component for handling client form operations - adding and editing clients
+ */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,6 +18,7 @@ export class ClientFormComponent implements OnInit {
   message = '';
   messageType = '';
 
+  // Available options for fitness programs
   fitnessPrograms = [
     'fat loss',
     'senior fitness',
@@ -24,14 +28,19 @@ export class ClientFormComponent implements OnInit {
     'overall fitness',
   ];
 
+  // Available options for gender selection
   genders = ['Female', 'Male', 'Unspecified'];
 
+  /**
+   * Initialize form and inject required services
+   */
   constructor(
     private fb: FormBuilder,
     private clientService: ClientService,
     private router: Router,
     private route: ActivatedRoute
   ) {
+    // Create form group with validation
     this.clientForm = this.fb.group({
       clientID: ['', Validators.required],
       name: ['', Validators.required],
@@ -46,6 +55,9 @@ export class ClientFormComponent implements OnInit {
     });
   }
 
+  /**
+   * Check for client ID in route and load client data if editing
+   */
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -57,11 +69,15 @@ export class ClientFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Handle form submission for both adding and updating clients
+   */
   onSubmit() {
     if (this.clientForm.valid) {
       const clientData = this.clientForm.value as Client;
       let success: boolean;
 
+      // Update existing or add new client based on edit mode
       if (this.isEditing) {
         success = this.clientService.updateClient(clientData);
         this.showMessage(
@@ -76,6 +92,7 @@ export class ClientFormComponent implements OnInit {
         );
       }
 
+      // Navigate back to client list on success
       if (success) {
         setTimeout(() => {
           this.router.navigate(['/clients']);
@@ -86,9 +103,16 @@ export class ClientFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Display temporary messages to user
+   * @param message Message to display
+   * @param type Type of message (success/error)
+   */
   private showMessage(message: string, type: 'success' | 'error') {
+    // Set message and type
     this.message = message;
     this.messageType = type;
+    // Clear message after delay
     setTimeout(() => {
       this.message = '';
       this.messageType = '';

@@ -1,11 +1,21 @@
+<!--
+  client-form.component.html
+  Form component for adding and editing client information
+  Uses Angular Reactive Forms for validation and data handling
+-->
+
 <div class="form-container">
+  <!-- Dynamic heading changes based on edit/add mode -->
   <h2>{{ isEditing ? "Edit" : "Add" }} Client</h2>
 
+  <!-- Message display for success/error notifications -->
   <div *ngIf="message" class="message" [ngClass]="messageType">
     {{ message }}
   </div>
 
+  <!-- Client form using reactive forms -->
   <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" class="client-form">
+    <!-- Client ID field - readonly when editing -->
     <div class="form-group">
       <label for="clientID">Client ID*</label>
       <input
@@ -14,6 +24,7 @@
         formControlName="clientID"
         [readonly]="isEditing"
       />
+      <!-- Validation error message -->
       <div
         *ngIf="
           clientForm.get('clientID')?.touched &&
@@ -25,9 +36,11 @@
       </div>
     </div>
 
+    <!-- Name field with validation -->
     <div class="form-group">
       <label for="name">Name*</label>
       <input id="name" type="text" formControlName="name" />
+      <!-- Validation error message -->
       <div
         *ngIf="
           clientForm.get('name')?.touched && clientForm.get('name')?.invalid
@@ -38,9 +51,11 @@
       </div>
     </div>
 
+    <!-- Date of Birth field with validation -->
     <div class="form-group">
       <label for="dateOfBirth">Date of Birth*</label>
       <input id="dateOfBirth" type="date" formControlName="dateOfBirth" />
+      <!-- Validation error message -->
       <div
         *ngIf="
           clientForm.get('dateOfBirth')?.touched &&
@@ -52,14 +67,17 @@
       </div>
     </div>
 
+    <!-- Gender dropdown with dynamic options -->
     <div class="form-group">
       <label for="gender">Gender*</label>
       <select id="gender" formControlName="gender">
         <option value="">Select Gender</option>
+        <!-- Dynamic gender options from component -->
         <option *ngFor="let gender of genders" [value]="gender">
           {{ gender }}
         </option>
       </select>
+      <!-- Validation error message -->
       <div
         *ngIf="
           clientForm.get('gender')?.touched && clientForm.get('gender')?.invalid
@@ -70,14 +88,17 @@
       </div>
     </div>
 
+    <!-- Fitness Program dropdown with dynamic options -->
     <div class="form-group">
       <label for="fitnessProgram">Fitness Program*</label>
       <select id="fitnessProgram" formControlName="fitnessProgram">
         <option value="">Select Program</option>
+        <!-- Dynamic program options from component -->
         <option *ngFor="let program of fitnessPrograms" [value]="program">
           {{ program }}
         </option>
       </select>
+      <!-- Validation error message -->
       <div
         *ngIf="
           clientForm.get('fitnessProgram')?.touched &&
@@ -89,9 +110,11 @@
       </div>
     </div>
 
+    <!-- Contact Info field with validation -->
     <div class="form-group">
       <label for="contactInfo">Contact Info*</label>
       <input id="contactInfo" type="text" formControlName="contactInfo" />
+      <!-- Validation error message -->
       <div
         *ngIf="
           clientForm.get('contactInfo')?.touched &&
@@ -103,9 +126,11 @@
       </div>
     </div>
 
+    <!-- Joined Date field with validation -->
     <div class="form-group">
       <label for="joinedDate">Joined Date*</label>
       <input id="joinedDate" type="date" formControlName="joinedDate" />
+      <!-- Validation error message -->
       <div
         *ngIf="
           clientForm.get('joinedDate')?.touched &&
@@ -117,9 +142,11 @@
       </div>
     </div>
 
+    <!-- Ending Date field with validation -->
     <div class="form-group">
       <label for="endingDate">Ending Date*</label>
       <input id="endingDate" type="date" formControlName="endingDate" />
+      <!-- Validation error message -->
       <div
         *ngIf="
           clientForm.get('endingDate')?.touched &&
@@ -131,12 +158,14 @@
       </div>
     </div>
 
+    <!-- Optional Special Health Notes textarea -->
     <div class="form-group">
       <label for="specialHealthNotes">Special Health Notes</label>
       <textarea id="specialHealthNotes" formControlName="specialHealthNotes">
       </textarea>
     </div>
 
+    <!-- VIP Status checkbox -->
     <div class="form-group checkbox-group">
       <label class="checkbox-label">
         <input type="checkbox" formControlName="isVIP" />
@@ -144,10 +173,13 @@
       </label>
     </div>
 
+    <!-- Form action buttons -->
     <div class="button-group">
+      <!-- Submit button text changes based on mode -->
       <button type="submit" class="btn-primary">
         {{ isEditing ? "Update" : "Save" }} Client
       </button>
+      <!-- Cancel button routes back to client list -->
       <button type="button" class="btn-secondary" routerLink="/clients">
         Cancel
       </button>

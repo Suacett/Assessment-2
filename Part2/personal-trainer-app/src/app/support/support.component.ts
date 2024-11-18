@@ -1,3 +1,7 @@
+/**
+ * Support component providing help and documentation
+ * Contains FAQ items and help section content
+ */
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,6 +10,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./support.component.css'],
 })
 export class SupportComponent {
+  // FAQ items array containing common questions and answers
   faqItems = [
     {
       question: 'How do I add a new client?',
@@ -29,6 +34,7 @@ export class SupportComponent {
     },
   ];
 
+  // Help sections containing feature guides and instructions
   helpSections = [
     {
       title: 'Client Management',

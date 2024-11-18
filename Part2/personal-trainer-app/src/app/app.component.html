@@ -1,7 +1,10 @@
+<!-- Main application template with navigation and content area -->
 <div class="container">
+  <!-- Header with navigation -->
   <header>
     <h1>Personal Trainer Client Management</h1>
     <nav>
+      <!-- Navigation links with active state handling -->
       <a
         routerLink="/"
         routerLinkActive="active"
@@ -15,9 +18,12 @@
     </nav>
   </header>
 
+  <!-- Main content area -->
   <main>
     <router-outlet></router-outlet>
+    <!-- Dynamic content loads here -->
   </main>
 
+  <!-- Quick access help button -->
   <button class="help-button" (click)="showHelp()">?</button>
 </div>

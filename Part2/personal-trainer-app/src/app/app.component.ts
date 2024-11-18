@@ -1,3 +1,7 @@
+/**
+ * Root component of the application
+ * Handles main layout and navigation
+ */
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,6 +13,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   constructor(private router: Router) {}
 
+  /**
+   * Navigates to help page when help button is clicked
+   */
   showHelp() {
     this.router.navigate(['/help']);
   }

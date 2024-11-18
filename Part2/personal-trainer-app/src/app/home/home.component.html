@@ -1,10 +1,15 @@
+<!-- home.component.html Landing page component displaying application
+features and client statistics -->
 <div class="home-container">
+  <!-- Welcome message section -->
   <section class="welcome-section">
     <h2>Welcome to Personal Trainer Client Management</h2>
     <p>Manage your clients efficiently with our easy-to-use platform.</p>
   </section>
 
+  <!-- Feature cards grid showing main functionality -->
   <section class="features-grid">
+    <!-- Client Management card -->
     <div class="feature-card">
       <h3>Client Management</h3>
       <p>Add and manage client profiles with essential information</p>
@@ -13,18 +18,21 @@
       </button>
     </div>
 
+    <!-- Client View card -->
     <div class="feature-card">
       <h3>View Clients</h3>
       <p>Access your client list and view VIP members</p>
       <button class="btn-primary" routerLink="/clients">View Clients</button>
     </div>
 
+    <!-- Privacy Information card -->
     <div class="feature-card">
       <h3>Privacy & Security</h3>
       <p>Learn about our privacy and security measures</p>
       <button class="btn-primary" routerLink="/privacy">Privacy Info</button>
     </div>
 
+    <!-- Help and Support card -->
     <div class="feature-card">
       <h3>Help & Support</h3>
       <p>Get assistance with using the application</p>
@@ -32,13 +40,16 @@
     </div>
   </section>
 
+  <!-- Statistics section - only shows if stats are available -->
   <section class="quick-stats" *ngIf="stats">
     <h3>Quick Statistics</h3>
     <div class="stats-grid">
+      <!-- Total clients counter -->
       <div class="stat-card">
         <p class="stat-number">{{ stats.totalClients }}</p>
         <p class="stat-label">Total Clients</p>
       </div>
+      <!-- VIP clients counter -->
       <div class="stat-card">
         <p class="stat-number">{{ stats.vipClients }}</p>
         <p class="stat-label">VIP Clients</p>

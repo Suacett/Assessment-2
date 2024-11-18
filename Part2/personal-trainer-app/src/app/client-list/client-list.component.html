@@ -1,13 +1,19 @@
+<!--
+  client-list.component.html
+  Displays list of clients with search, filter, and management options
+-->
+
 <div class="list-container">
   <h2>Client List</h2>
 
-  <!-- Message Display -->
+  <!-- Message display for success/error notifications -->
   <div *ngIf="message" class="message" [ngClass]="messageType">
     {{ message }}
   </div>
 
-  <!-- Search Section -->
+  <!-- Search and filter controls section -->
   <div class="search-section">
+    <!-- Search by client ID form -->
     <div class="search-form">
       <input
         type="text"
@@ -18,6 +24,7 @@
       <button (click)="searchClient()" class="btn-primary">Search</button>
     </div>
 
+    <!-- Filter and action buttons -->
     <div class="filter-buttons">
       <button (click)="loadAllClients()" class="btn-secondary">
         Show All Clients
@@ -31,22 +38,26 @@
     </div>
   </div>
 
-  <!-- Client Cards -->
+  <!-- Client cards display grid -->
   <div class="client-grid">
+    <!-- Message for empty client list -->
     <div *ngIf="clients.length === 0" class="no-clients">
       No clients to display
     </div>
 
+    <!-- Individual client cards -->
     <div
       *ngFor="let client of clients"
       class="client-card"
       [class.vip]="client.isVIP"
     >
+      <!-- Client card header with name and VIP status -->
       <div class="card-header">
         <h3>{{ client.name }}</h3>
         <span *ngIf="client.isVIP" class="vip-badge">VIP</span>
       </div>
 
+      <!-- Client details section -->
       <div class="card-content">
         <p><strong>ID:</strong> {{ client.clientID }}</p>
         <p><strong>Program:</strong> {{ client.fitnessProgram }}</p>
@@ -54,6 +65,7 @@
         <p><strong>Ending:</strong> {{ client.endingDate | date }}</p>
       </div>
 
+      <!-- Card action buttons -->
       <div class="card-actions">
         <button (click)="editClient(client.clientID)" class="btn-secondary">
           Edit

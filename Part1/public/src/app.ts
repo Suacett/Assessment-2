@@ -1,6 +1,13 @@
+/**
+ * app.ts
+ * Personal trainer client management application that handles
+ * adding, editing, deleting and displaying client information
+ */
 import { Client, ClientManager, Gender, FitnessProgram } from "./types.js";
 
-
+/**
+ * Main application class that manages client data and user interactions
+ */
 class ClientApp {
   private clientManager: ClientManager;
   private messageTimeout: number | null = null;
@@ -8,35 +15,40 @@ class ClientApp {
   private editingClientID: string | null = null;
   private clients: Client[] = [];
 
+  /**
+   * Initializes the application with client manager and event listeners
+   */
   constructor() {
+    // Create new client manager instance
     this.clientManager = new ClientManager();
     this.initializeEventListeners();
-    // Display initial data
+    // Display initial client data
     this.displayClients(this.clientManager.getAllClients());
   }
 
-
-
+  /**
+   * Sets up event listeners for forms and buttons
+   */
   private initializeEventListeners(): void {
-    // Add client form submission
+    // Set up add client form submission handler
     const addForm = document.getElementById("addClientForm");
     if (addForm) {
       addForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission
         this.handleSubmit();
       });
     }
 
-    // Search form submission
+    // Set up search form submission handler
     const searchForm = document.getElementById("searchForm");
     if (searchForm) {
       searchForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevent default form submission
         this.handleSearch();
       });
     }
 
-    // Display filters
+    // Set up filter buttons for displaying all or VIP clients
     document.getElementById("showAllBtn")?.addEventListener("click", () => {
       this.displayClients(this.clientManager.getAllClients());
     });
@@ -46,13 +58,18 @@ class ClientApp {
     });
   }
 
+  /**
+   * Handles form submission for adding/updating clients
+   */
   private handleSubmit(): void {
+    // Get form data and validate
     const client = this.getFormData();
     if (!client) return;
 
     let success: boolean;
+    // Check if we're updating an existing client
     if (this.isEditing && this.editingClientID === client.clientID) {
-      // Make sure we're passing just the client object
+      // Update existing client
       success = this.clientManager.updateClient(client);
       if (success) {
         this.showMessage("Client updated successfully", "success");
@@ -61,6 +78,7 @@ class ClientApp {
         this.showMessage("Failed to update client", "error");
       }
     } else {
+      // Add new client
       success = this.clientManager.addClient(client);
       if (success) {
         this.showMessage("Client added successfully", "success");
@@ -70,17 +88,24 @@ class ClientApp {
       }
     }
 
+    // Refresh client display if operation was successful
     if (success) {
       this.displayClients(this.clientManager.getAllClients());
     }
   }
 
+  /**
+   * Resets form fields and editing state back to default
+   */
   private resetForm(): void {
     const form = document.getElementById("addClientForm") as HTMLFormElement;
     if (form) {
+      // Clear all form fields
       form.reset();
+      // Reset editing state
       this.isEditing = false;
       this.editingClientID = null;
+      // Update submit button text back to default
       const submitButton = form.querySelector(
         'button[type="submit"]'
       ) as HTMLButtonElement;
@@ -90,13 +115,19 @@ class ClientApp {
     }
   }
 
+  /**
+   * Gets and validates form data to create or update a client
+   * @returns Client object if valid, null if validation fails
+   */
   private getFormData(): Client | null {
     const form = document.getElementById("addClientForm") as HTMLFormElement;
     if (!form) return null;
 
+    // Create FormData object from form
     const formData = new FormData(form);
 
     try {
+      // Extract all form fields and create client object
       const client: Client = {
         clientID: formData.get("clientID") as string,
         name: formData.get("name") as string,
@@ -111,6 +142,7 @@ class ClientApp {
         isVIP: formData.get("isVIP") === "on",
       };
 
+      // Validate required fields
       if (
         !client.clientID ||
         !client.name ||
@@ -131,18 +163,23 @@ class ClientApp {
     }
   }
 
+  /**
+   * Searches for a client by ID and displays the result
+   */
   private handleSearch(): void {
+    // Get search input element
     const searchInput = document.getElementById("searchId") as HTMLInputElement;
     if (!searchInput) return;
 
+    // Get and validate search term
     const searchId = searchInput.value.trim();
     if (!searchId) {
       this.showMessage("Enter a valid client ID to search", "error");
       return;
     }
 
+    // Search for client and display results
     const client = this.clientManager.getClient(searchId);
-
     if (client) {
       this.displayClients([client]);
     } else {
@@ -151,15 +188,22 @@ class ClientApp {
     }
   }
 
+  /**
+   * Displays provided clients list in the UI
+   * @param clients Array of clients to display
+   */
   private displayClients(clients: Client[]): void {
+    // Get client list container
     const clientList = document.getElementById("clientList");
     if (!clientList) return;
 
+    // Show message if no clients to display
     if (clients.length === 0) {
       clientList.innerHTML = "<p>No clients to display</p>";
       return;
     }
 
+    // Generate HTML for client cards
     clientList.innerHTML = clients
       .map(
         (client) => `
@@ -182,14 +226,20 @@ class ClientApp {
       .join("");
   }
 
+  /**
+   * Populates form with client data for editing
+   * @param clientID ID of client to edit
+   */
   public editClient(clientID: string): void {
+    // Get client data
     const client = this.clientManager.getClient(clientID);
     if (!client) return;
 
+    // Set editing state
     this.isEditing = true;
     this.editingClientID = clientID;
 
-    // Update submit button text
+    // Update submit button text for editing mode
     const submitButton = document.querySelector(
       '#addClientForm button[type="submit"]'
     ) as HTMLButtonElement;
@@ -206,6 +256,7 @@ class ClientApp {
           | HTMLSelectElement
           | HTMLTextAreaElement;
         if (element) {
+          // Handle checkbox fields differently
           if (element.type === "checkbox") {
             (element as HTMLInputElement).checked = client[
               key as keyof Client
@@ -217,25 +268,41 @@ class ClientApp {
       });
     }
   }
+
+  /**
+   * Deletes a client after confirmation
+   * @param clientID ID of client to delete
+   */
   public deleteClient(clientID: string): void {
+    // Show confirmation dialog
     if (!confirm("Are you sure you want to delete this client?")) return;
 
+    // Delete client and refresh display
     if (this.clientManager.deleteClient(clientID)) {
       this.showMessage("Client deleted successfully", "success");
       this.displayClients(this.clientManager.getAllClients());
     }
   }
 
+  /**
+   * Shows temporary success/error messages to user
+   * @param message Message text to display
+   * @param type Type of message ('success' or 'error')
+   */
   private showMessage(message: string, type: "success" | "error"): void {
+    // Get message container
     const messageDiv = document.getElementById("message");
     if (!messageDiv) return;
 
+    // Display message with appropriate styling
     messageDiv.innerHTML = `<div class="${type}">${message}</div>`;
 
+    // Clear any existing timeout
     if (this.messageTimeout) {
       clearTimeout(this.messageTimeout);
     }
 
+    // Set timeout to clear message after 3 seconds
     this.messageTimeout = window.setTimeout(() => {
       if (messageDiv) messageDiv.innerHTML = "";
     }, 3000);

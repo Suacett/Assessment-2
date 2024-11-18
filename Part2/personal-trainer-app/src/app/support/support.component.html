@@ -1,27 +1,33 @@
+<!-- support.component.html 
+Provides help documentation and user support information -->
 <div class="help-container">
+  <!-- Header section with title -->
   <section class="help-header">
     <h2>Help & Support</h2>
     <p>Find answers to common questions and learn how to use the application</p>
   </section>
 
   <div class="help-content">
-    <!-- Quick Start Guide -->
+    <!-- Quick start guide section with dynamic content -->
     <section class="help-section">
       <h3>Quick Start Guide</h3>
       <div class="quick-guide">
+        <!-- Loops through help sections array to display guides -->
         <div *ngFor="let section of helpSections" class="guide-section">
           <h4>{{ section.title }}</h4>
           <ul>
+            <!-- Displays individual help items for each section -->
             <li *ngFor="let item of section.items">{{ item }}</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ section with dynamic content -->
     <section class="help-section">
       <h3>Frequently Asked Questions</h3>
       <div class="faq-list">
+        <!-- Loops through FAQ items to display Q&As -->
         <div *ngFor="let faq of faqItems" class="faq-item">
           <div class="question">
             <h4>{{ faq.question }}</h4>
@@ -33,7 +39,7 @@
       </div>
     </section>
 
-    <!-- Contact Support -->
+    <!-- Static support contact information -->
     <section class="help-section">
       <h3>Need More Help?</h3>
       <div class="contact-support">
@@ -46,7 +52,7 @@
       </div>
     </section>
 
-    <!-- Usage Tips -->
+    <!-- Static usage tips section -->
     <section class="help-section">
       <h3>Usage Tips</h3>
       <div class="tips-list">

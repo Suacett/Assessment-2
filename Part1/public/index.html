@@ -1,39 +1,53 @@
+<!--
+  index.html
+  Main page for the personal trainer client management system
+  Provides interface for adding, editing, searching and displaying clients
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Personal Trainer Client Management</title>
+    <!-- Link to external stylesheet -->
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <div class="container">
+      <!-- Header section with title and message display area -->
       <header>
         <h1>Personal Trainer Client Management</h1>
         <div id="message" class="message-container"></div>
       </header>
+      <!-- CSS loading test indicators -->
       <div style="color: red">If this text is red, CSS isn't loading</div>
       <div class="test-css">If this text is blue, CSS is loading</div>
 
+      <!-- Main content area with two-column layout -->
       <main class="content-grid">
+        <!-- Client form section for adding/editing clients -->
         <section class="form-section">
           <h2>Add/Edit Client</h2>
           <form id="addClientForm">
+            <!-- Client ID field -->
             <div class="form-group">
               <label for="clientID">Client ID*</label>
               <input type="text" id="clientID" name="clientID" required />
             </div>
 
+            <!-- Name field -->
             <div class="form-group">
               <label for="name">Name*</label>
               <input type="text" id="name" name="name" required />
             </div>
 
+            <!-- Date of Birth field -->
             <div class="form-group">
               <label for="dateOfBirth">Date of Birth*</label>
               <input type="date" id="dateOfBirth" name="dateOfBirth" required />
             </div>
 
+            <!-- Gender selection dropdown -->
             <div class="form-group">
               <label for="gender">Gender*</label>
               <select id="gender" name="gender" required>
@@ -43,6 +57,7 @@
               </select>
             </div>
 
+            <!-- Fitness Program selection dropdown -->
             <div class="form-group">
               <label for="fitnessProgram">Fitness Program*</label>
               <select id="fitnessProgram" name="fitnessProgram" required>
@@ -57,21 +72,25 @@
               </select>
             </div>
 
+            <!-- Contact Information field -->
             <div class="form-group">
               <label for="contactInfo">Contact Info*</label>
               <input type="text" id="contactInfo" name="contactInfo" required />
             </div>
 
+            <!-- Joined Date field -->
             <div class="form-group">
               <label for="joinedDate">Joined Date*</label>
               <input type="date" id="joinedDate" name="joinedDate" required />
             </div>
 
+            <!-- Ending Date field -->
             <div class="form-group">
               <label for="endingDate">Ending Date*</label>
               <input type="date" id="endingDate" name="endingDate" required />
             </div>
 
+            <!-- Special Health Notes textarea -->
             <div class="form-group">
               <label for="specialHealthNotes">Special Health Notes</label>
               <textarea
@@ -80,6 +99,7 @@
               ></textarea>
             </div>
 
+            <!-- VIP Status checkbox -->
             <div class="form-group">
               <label class="checkbox-label">
                 <input type="checkbox" id="isVIP" name="isVIP" />
@@ -87,12 +107,15 @@
               </label>
             </div>
 
+            <!-- Form submit button -->
             <button type="submit" class="btn-primary">Save Client</button>
           </form>
         </section>
 
+        <!-- Search and display section -->
         <section class="search-section">
           <h2>Search Client</h2>
+          <!-- Search form -->
           <form id="searchForm">
             <div class="form-group">
               <label for="searchId">Client ID</label>
@@ -101,6 +124,7 @@
             <button type="submit" class="btn-secondary">Search</button>
           </form>
 
+          <!-- Filter buttons -->
           <div class="button-group">
             <button id="showAllBtn" class="btn-secondary">
               Show All Clients
@@ -110,11 +134,13 @@
             </button>
           </div>
 
+          <!-- Client list display area -->
           <div id="clientList" class="client-list"></div>
         </section>
       </main>
     </div>
 
+    <!-- Link to JavaScript module -->
     <script type="module" src="js/app.js"></script>
   </body>
 </html>
