@@ -1,67 +1,49 @@
 <div class="privacy-container">
   <section class="privacy-header">
     <h2>Security Analysis & Privacy Requirements</h2>
-    <p>
-      Detailed analysis of our application's security implementation and privacy
-      measures
-    </p>
+    <p>Current implementation analysis and future security recommendations</p>
   </section>
 
-  <!-- Security Analysis Findings -->
+  <!-- Current Implementation -->
   <section class="privacy-section">
-    <h3>Security Analysis & Findings</h3>
-    <div *ngFor="let analysis of securityAnalysis" class="analysis-item">
-      <h4>{{ analysis.category }}</h4>
-      <h5>Current Implementation</h5>
-      <p>Approach: {{ analysis.currentImplementation.approach }}</p>
-      <h5>Implications:</h5>
+    <h3>Currently Implemented Features</h3>
+    <div *ngFor="let feature of implementedFeatures" class="feature-item">
+      <h4>{{ feature.category }}</h4>
+      <h5>Implemented Features:</h5>
       <ul>
-        <li
-          *ngFor="
-            let implication of analysis.currentImplementation.implications
-          "
-        >
-          {{ implication }}
-        </li>
+        <li *ngFor="let item of feature.features">{{ item }}</li>
       </ul>
-      <h5>Limitations:</h5>
+      <h5>Current Limitations:</h5>
       <ul>
-        <li
-          *ngFor="let limitation of analysis.currentImplementation.limitations"
-        >
-          {{ limitation }}
-        </li>
-      </ul>
-      <h5>Risks:</h5>
-      <ul>
-        <li *ngFor="let risk of analysis.risks">{{ risk }}</li>
+        <li *ngFor="let limit of feature.limitations">{{ limit }}</li>
       </ul>
     </div>
   </section>
 
-  <!-- Critical Security Gaps -->
+  <!-- Security Considerations -->
   <section class="privacy-section">
-    <h3>Critical Security Gaps</h3>
-    <div *ngFor="let gap of securityGaps" class="gap-item">
-      <h4>{{ gap.area }}</h4>
-      <h5>Gaps:</h5>
+    <h3>Known Security Considerations</h3>
+    <div
+      *ngFor="let consideration of securityConsiderations"
+      class="consideration-item"
+    >
+      <h4>{{ consideration.area }}</h4>
       <ul>
-        <li *ngFor="let gapItem of gap.gaps">{{ gapItem }}</li>
+        <li *ngFor="let concern of consideration.concerns">{{ concern }}</li>
       </ul>
-      <p>Impact: {{ gap.impact }}</p>
     </div>
   </section>
 
-  <!-- Immediate Security Recommendations -->
+  <!-- Future Recommendations -->
   <section class="privacy-section">
-    <h3>Immediate Security Recommendations</h3>
-    <div *ngFor="let fix of immediateFixes" class="fix-item">
-      <h4>Priority: {{ fix.priority }}</h4>
-      <h5>{{ fix.recommendation }}</h5>
-      <p>Rationale: {{ fix.rationale }}</p>
-      <h5>Steps:</h5>
+    <h3>Recommended Security Improvements</h3>
+    <div
+      *ngFor="let rec of securityRecommendations"
+      class="recommendation-item"
+    >
+      <h4>{{ rec.feature }} (Priority: {{ rec.priority }})</h4>
       <ul>
-        <li *ngFor="let step of fix.steps">{{ step }}</li>
+        <li *ngFor="let item of rec.recommendations">{{ item }}</li>
       </ul>
     </div>
   </section>
