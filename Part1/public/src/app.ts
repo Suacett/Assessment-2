@@ -34,7 +34,7 @@ class ClientApp {
     const addForm = document.getElementById("addClientForm");
     if (addForm) {
       addForm.addEventListener("submit", (e) => {
-        e.preventDefault(); // Prevent default form submission
+        e.preventDefault(); // Prevent default form submission (page reloading)
         this.handleSubmit();
       });
     }

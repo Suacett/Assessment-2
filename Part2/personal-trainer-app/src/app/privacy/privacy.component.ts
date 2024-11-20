@@ -30,8 +30,7 @@ export class PrivacyComponent {
     {
       category: 'Client Data Management',
       features: [
-        'TypeScript interfaces for data structure enforcement',
-        'Centralised data service for controlled access',
+        'TypeScript interfaces to enforce data structure',
         'Session-based data storage',
         'VIP client status tracking',
         'Controlled CRUD operations',
@@ -75,7 +74,7 @@ export class PrivacyComponent {
       priority: 'High',
       feature: 'Authentication System',
       recommendations: [
-        'Add user authentication',
+        'Add user authentication/2FA',
         'Implement role-based access',
         'Add login security features',
         'Implement session tracking',
@@ -86,7 +85,7 @@ export class PrivacyComponent {
       priority: 'Medium',
       feature: 'Enhanced Data Validation',
       recommendations: [
-        'Add comprehensive input sanitization',
+        'Add input sanitization',
         'Implement advanced type checking',
         'Add special character validation',
         'Implement rate limiting',
@@ -103,7 +102,7 @@ export class PrivacyComponent {
         'Current in-memory storage is temporary',
         'Data is lost between sessions',
         'No encryption implemented',
-        'Limited data protection',
+        'Minimal data security',
       ],
     },
     {
@@ -120,7 +119,7 @@ export class PrivacyComponent {
       concerns: [
         'Basic validation only',
         'Limited protection against malicious input',
-        'No rate limiting implemented',
+        'No rate limiting',
         'Basic error handling',
       ],
     },
